@@ -77,12 +77,14 @@ const Dashboard = () => {
   const dashboardData = async () => {
     setLoading(true);
     const token = localStorage.getItem("fittrack-app-token");
+    console.log(token);
     await getDashboardDetails(token).then((res) => {
       setData(res.data);
       console.log(res.data);
       setLoading(false);
     });
   };
+
   const getTodaysWorkout = async () => {
     setLoading(true);
     const token = localStorage.getItem("fittrack-app-token");
