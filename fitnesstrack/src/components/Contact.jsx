@@ -1,65 +1,78 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import FF from '../utils/Images/FF.png';
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column; /* Stack form and icons vertically on mobile */
   justify-content: center;
   align-items: center; /* Center vertically */
-  background-color: white; /* Set background to white */
+  /* Background Image with smooth gradient overlay */
+  background: linear-gradient(
+      to bottom, 
+      rgba(255, 255, 255, 0.5),  /* Start with a white ash color */
+      rgba(255, 255, 255, 0.5)   /* Gradually fade to transparent */
+    ),
+    url(${FF});  /* Set the background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   padding: 40px;
   @media (max-width: 960px) {
-    flex-direction: column;
     padding: 20px;
   }
 `;
 
 const Wrapper = styled.div`
+
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: row;
+  
+  flex-direction: row; /* Row direction on desktop */
+  align-items: flex-start; /* Align items to the top */
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   gap: 20px;
-  @media (max-width: 960px) {
-    flex-direction: column;
-    gap: 20px; /* Space between contact form and social icons on mobile */
+  @media (max-width: 600px) {
+    flex-direction: column; /* Column direction on mobile */
+    align-items: center; /* Center items on mobile */
   }
+`;
+
+
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column; /* Stack contact info and social icons vertically */
+  justify-content: center;
+  align-items: center;
+  flex: 1; /* Allow it to grow */
+  margin-top: 30px; /* Move the content a bit lower */
+  margin-right: 50px;
+  @media (max-width: 600px) {
+    width: 100%; /* Full width on mobile */
+    margin-top: 20px; /* Add space above social icons on mobile */
+  }
+
 `;
 
 const LeftColumn = styled.div`
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  @media (max-width: 960px) {
-    order: 2; /* Place below contact form on mobile */
+  flex: 2; /* Allow it to grow more */
+  @media (max-width: 600px) {
+    width: 100%; /* Full width on mobile */
   }
 `;
 
-/* Right column for the contact form */
-const RightColumn = styled.div`
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 960px) {
-    flex: none;
-    margin-bottom: 20px; /* Add space between form and icons on mobile */
-  }
-`;
-
-/* Social media icon styles */
 const SocialIcons = styled.div`
+margin-top: 10px;
   display: flex;
   justify-content: center; /* Center icons horizontally */
   gap: 20px;
-  @media (max-width: 960px) {
-    font-size: 24px; /* Adjust font size on mobile */
-  }
+
 `;
 
 const SocialIcon = styled.a`
@@ -85,24 +98,43 @@ const ContactForm = styled.form`
   max-width: 400px; /* Reduced size */
   display: flex;
   flex-direction: column;
-  background-color: white; /* Changed color to white */
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.9),  /* Start with a white ash color */
+    rgba(255, 255, 255, 0.9)   /* Gradually fade to transparent */
+  );
+
   border: 1px solid rgba(0, 0, 0, 0.125); /* Changed border color to light gray */
   padding: 32px;
   border-radius: 22px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 24px; /* Changed box shadow color to black */
   gap: 12px;
-  margin: 0 auto;
+  @media (max-width: 960px) {
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.6),  /* Start with a white ash color */
+        rgba(255, 255, 255, 0.6)   /* Gradually fade to transparent */
+      );
+   
+  }
+
+
 `;
 
 const ContactTitle = styled.div`
-  font-size: 28px;
+  font-size: 60px;
   margin-bottom: 16px;
+  color:#000;
   font-weight: 600;
   color: ${({ theme }) => theme.text_primary};
+  @media (max-width: 960px) {
+    font-size: 26px;
+   
+  }
+ 
 `;
 
 const ContactInput = styled.input`
-  flex: 1;
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.text_secondary + 50};
   outline: none;
@@ -117,7 +149,6 @@ const ContactInput = styled.input`
 `;
 
 const ContactInputMessage = styled.textarea`
-  flex: 1;
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.text_secondary + 50};
   outline: none;
@@ -143,6 +174,17 @@ const ContactButton = styled.input`
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+`;
+
+const ContactInfo = styled.div`
+font-size: 21px;
+  text-align: center;
+  margin-bottom: 20px; /* Space between contact info and social icons */
+  color: #000;
+  @media (max-width: 960px) {
+    font-size: 16px;
+    margin-bottom: 10px; /* Less space on mobile */
+  }
 `;
 
 const Contact = () => {
@@ -177,26 +219,14 @@ const Contact = () => {
     //   );
   };
 
-  const handleEmailChange = (e) => {
-    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    setIsValid(emailRegex.test(e.target.value));
-  };
 
   return (
     <Container>
       <Wrapper>
-        {/* Right column for form */}
-        <RightColumn>
-          <ContactForm ref={form} onSubmit={handleSubmit}>
-            <ContactTitle>Contact Us</ContactTitle>
-            <ContactInput
-              placeholder="Your Email"
-              name="from_email"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              title="Please enter a valid email address"
-              required
-              onChange={handleEmailChange}
-            />
+        {/* Left column for contact information and social media icons */}
+        <LeftColumn>
+        <ContactForm ref={form} onSubmit={handleSubmit}>
+           
             <ContactInput placeholder="Your Name" name="from_name" />
             <ContactInput placeholder="Subject" name="subject" />
             <ContactInputMessage
@@ -206,11 +236,24 @@ const Contact = () => {
             />
             <ContactButton type="submit" value="Send" />
           </ContactForm>
-        </RightColumn>
+        
+        </LeftColumn>
 
-        {/* Left column for social media icons */}
-        <LeftColumn>
+        {/* Right column for form */}
+        <RightColumn>
+         
+
+        <ContactTitle>Contact Us</ContactTitle>
+
+        <ContactInfo>
+            <div>For questions, technical assistance, or collaboration opportunities:</div>
+            
+          </ContactInfo>
+
           <SocialIcons>
+            <SocialIcon href="https://wa.me/1234567890" target="_blank">
+             <FaWhatsapp />
+            </SocialIcon>
             <SocialIcon href="https://www.facebook.com" target="_blank">
               <FaFacebookF />
             </SocialIcon>
@@ -218,13 +261,16 @@ const Contact = () => {
               <FaInstagram />
             </SocialIcon>
           </SocialIcons>
-        </LeftColumn>
+        </RightColumn>
       </Wrapper>
     </Container>
   );
 };
 
 export default Contact;
+
+
+
 
 
 
