@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* Center vertically */
   background-color: white; /* Set background to white */
   height: 100vh;
   padding: 40px;
@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: row;
   width: 100%;
@@ -25,20 +25,18 @@ const Wrapper = styled.div`
   gap: 20px;
   @media (max-width: 960px) {
     flex-direction: column;
+    gap: 20px; /* Space between contact form and social icons on mobile */
   }
 `;
 
-/* Left column for social media icons */
 const LeftColumn = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: row; /* Changed to row */
-  justify-content: center; /* Center the icons horizontally */
-  align-items: center; /* Center the icons vertically */
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   @media (max-width: 960px) {
-    justify-content: flex-start; /* Align to the start on small screens */
-    align-items: flex-start; /* Align to the start on small screens */
+    order: 2; /* Place below contact form on mobile */
   }
 `;
 
@@ -46,17 +44,22 @@ const LeftColumn = styled.div`
 const RightColumn = styled.div`
   flex: 2;
   display: flex;
-  flex-direction: row; /* Changed to row */
-  justify-content: center; /* Center the form horizontally */
-  align-items: center; /* Center the form vertically */
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 960px) {
+    flex: none;
+    margin-bottom: 20px; /* Add space between form and icons on mobile */
+  }
 `;
 
 /* Social media icon styles */
 const SocialIcons = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center; /* Center icons horizontally */
   gap: 20px;
+  @media (max-width: 960px) {
+    font-size: 24px; /* Adjust font size on mobile */
+  }
 `;
 
 const SocialIcon = styled.a`
@@ -79,7 +82,7 @@ const SocialIcon = styled.a`
 
 const ContactForm = styled.form`
   width: 100%;
-  max-width: 500px; /* Reduced size */
+  max-width: 400px; /* Reduced size */
   display: flex;
   flex-direction: column;
   background-color: white; /* Changed color to white */
@@ -88,7 +91,7 @@ const ContactForm = styled.form`
   border-radius: 22px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 24px; /* Changed box shadow color to black */
   gap: 12px;
-  margin: 70px auto 0 200px;
+  margin: 0 auto;
 `;
 
 const ContactTitle = styled.div`
@@ -103,10 +106,10 @@ const ContactInput = styled.input`
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.text_secondary + 50};
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   color: ${({ theme }) => theme.text_primary};
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   margin-bottom: 12px;
   &:focus {
     border: 1px solid ${({ theme }) => theme.primary};
@@ -118,10 +121,10 @@ const ContactInputMessage = styled.textarea`
   background-color: transparent;
   border: 1px solid ${({ theme }) => theme.text_secondary + 50};
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   color: ${({ theme }) => theme.text_primary};
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   margin-bottom: 12px;
   &:focus {
     border: 1px solid ${({ theme }) => theme.primary};
@@ -182,18 +185,6 @@ const Contact = () => {
   return (
     <Container>
       <Wrapper>
-        {/* Left column for social media icons */}
-        <LeftColumn>
-          <SocialIcons>
-            <SocialIcon href="https://www.facebook.com" target="_blank">
-              <FaFacebookF />
-            </SocialIcon>
-            <SocialIcon href="https://www.instagram.com" target="_blank">
-              <FaInstagram />
-            </SocialIcon>
-          </SocialIcons>
-        </LeftColumn>
-
         {/* Right column for form */}
         <RightColumn>
           <ContactForm ref={form} onSubmit={handleSubmit}>
@@ -216,12 +207,26 @@ const Contact = () => {
             <ContactButton type="submit" value="Send" />
           </ContactForm>
         </RightColumn>
+
+        {/* Left column for social media icons */}
+        <LeftColumn>
+          <SocialIcons>
+            <SocialIcon href="https://www.facebook.com" target="_blank">
+              <FaFacebookF />
+            </SocialIcon>
+            <SocialIcon href="https://www.instagram.com" target="_blank">
+              <FaInstagram />
+            </SocialIcon>
+          </SocialIcons>
+        </LeftColumn>
       </Wrapper>
     </Container>
   );
 };
 
 export default Contact;
+
+
 
 
 
