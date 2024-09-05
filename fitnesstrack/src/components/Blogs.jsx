@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TT from '../utils/Images/TT.png';
 
 // Main container and wrapper styles
 // Main container with a background image and ash color overlay
@@ -17,7 +18,7 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.8),  /* Start with a white ash color */
       rgba(255, 255, 255, 0.4)   /* Gradually fade to transparent */
     ),
-    url('https://firebasestorage.googleapis.com/v0/b/fitnaseetracking.appspot.com/o/Grey%20and%20White%20Modern%20Gym%20Fitness%20Presentation.png?alt=media&token=2473b5ac-72ea-480d-9ac0-792cc8e3ab28');
+    url(${TT});  /* Set the background image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
