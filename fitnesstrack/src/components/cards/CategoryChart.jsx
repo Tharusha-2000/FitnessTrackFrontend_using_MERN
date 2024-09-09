@@ -16,6 +16,8 @@ const Card = styled.div`
     padding: 16px;
   }
 `;
+
+
 const Title = styled.div`
   font-weight: 600;
   font-size: 16px;
@@ -24,6 +26,7 @@ const Title = styled.div`
     font-size: 14px;
   }
 `;
+
 
 const CategoryChart = ({ data }) => {
   return (

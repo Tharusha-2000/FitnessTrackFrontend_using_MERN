@@ -69,7 +69,7 @@ const Dashboard = () => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
   const [workout, setWorkout] = useState(`#Legs
--Back Squat
+-Back Squa
 -5 setsX15 reps
 -30 kg
 -10 min`);
@@ -94,7 +94,7 @@ const Dashboard = () => {
       setLoading(false);
     });
   };
-
+  
   const addNewWorkout = async () => {
     setButtonLoading(true);
     const token = localStorage.getItem("fittrack-app-token");

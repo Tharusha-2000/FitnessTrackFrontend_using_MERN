@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LogoImage from "../utils/Images/Logo.png";
-import AuthImage from "../utils/Images/AuthImage.jpg";
+import AuthImage from "../utils/Images/RR.png";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
 
@@ -9,7 +9,10 @@ const Container = styled.div`
   flex: 1;
   height: 100%;
   display: flex;
-  background: ${({ theme }) => theme.bg};
+  background: ${({ theme }) => theme.bg} url(${AuthImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   @media (max-width: 700px) {
     flex-direction: column;
   }
@@ -44,6 +47,20 @@ const Right = styled.div`
   gap: 16px;
   align-items: center;
   justify-content: center;
+
+  background: linear-gradient(
+    to bottom, 
+    rgba(255, 255, 255, 0.8),  /* Start with a white ash color */
+    rgba(255, 255, 255, 0.8)   /* Gradually fade to transparent */
+  );
+  @media (max-width: 960px) {
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 1),  /* Start with a white ash color */
+        rgba(255, 255, 255, 1)   /* Gradually fade to transparent */
+      );
+   
+  }
 `;
 
 const Text = styled.div`
@@ -68,7 +85,7 @@ const Authentication = () => {
     <Container>
       <Left>
         <Logo src={LogoImage} />
-        <Image src={AuthImage} />
+       
       </Left>
       <Right>
         {!login ? (

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TT from '../utils/Images/TT.png';
 
-// Main container and wrapper styles
+
 // Main container with a background image and ash color overlay
 const Container = styled.div`
   flex: 1;
@@ -24,6 +24,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
 `;
 
+
 const Wrapper = styled.div`
   flex: 1;
   max-width: 1400px;
@@ -34,6 +35,7 @@ const Wrapper = styled.div`
     gap: 12px;
   }
 `;
+
 
 // Card component styling with responsive image control
 const Card = styled.div`
@@ -51,6 +53,7 @@ const Card = styled.div`
   }
 `;
 
+
 const Image = styled.img`
   width: 250px;
   height: 250px;
@@ -62,9 +65,11 @@ const Image = styled.img`
   }
 `;
 
+
 const Content = styled.div`
   flex: 1;
 `;
+
 
 const Link = styled.a`
   color: #007bff;
@@ -76,9 +81,11 @@ const Link = styled.a`
   }
 `;
 
+
 const Paragraph = styled.p`
   line-height: 1.6;
 `;
+
 
 const Header = styled.header`
   display: flex;

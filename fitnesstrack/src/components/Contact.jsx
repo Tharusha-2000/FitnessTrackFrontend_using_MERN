@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import FF from '../utils/Images/FF.png';
+import { contact } from "../api/";
+
 
 const Container = styled.div`
   display: flex;
@@ -189,34 +191,20 @@ font-size: 21px;
 
 const Contact = () => {
   const form = useRef();
-  const [isValid, setIsValid] = useState(true);
+  const [from_name, setFromName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    if (!isValid) {
+  const handleSubmit = async (e) => {
       e.preventDefault();
-      alert("Please enter a valid email address");
-      return;
+    const token = localStorage.getItem("fittrack-app-token");
+    const formData = { from_name, subject, message };
+    try{
+      const res = await contact(token,  formData);
+      // console.log(res); 
+    }catch(err) {
+      alert(err);
     }
-
-    // e.preventDefault();
-    // emailjs
-    //   .sendForm(
-    //     "service_l9n3zv9",
-    //     "template_tbaaokr",
-    //     form.current,
-    //     "EiqRfyL8sSjrN4iUu"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //       alert("Message Sent");
-    //       form.current.reset();
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //       alert(error);
-    //     }
-    //   );
   };
 
 
@@ -227,13 +215,26 @@ const Contact = () => {
         <LeftColumn>
         <ContactForm ref={form} onSubmit={handleSubmit}>
            
-            <ContactInput placeholder="Your Name" name="from_name" />
-            <ContactInput placeholder="Subject" name="subject" />
+            <ContactInput
+              placeholder="Your Name"
+              name="from_name"
+              value={from_name}
+              onChange={(e) => setFromName(e.target.value)}
+            />
+            <ContactInput
+              placeholder="Subject"
+              name="subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
             <ContactInputMessage
               placeholder="Message"
               name="message"
               rows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
+
             <ContactButton type="submit" value="Send" />
           </ContactForm>
         
