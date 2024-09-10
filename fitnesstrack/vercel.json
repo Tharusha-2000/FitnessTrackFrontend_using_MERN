@@ -6,6 +6,12 @@
       {
         "src": "package.json",
         "use": "@vercel/static-build",
+        "env": {
+            "NODE_ENV": "development"
+          },
+          "commands": {
+            "install": "npm install --only=dev && npm install"
+          },
         "config": {
           "distDir": "dist"
         }
@@ -26,4 +32,3 @@
   }
 
 
-  
