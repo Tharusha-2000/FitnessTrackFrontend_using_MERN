@@ -18,5 +18,10 @@ export default defineConfig({
     alias: {
       dayjs: 'dayjs'
     }
-  }
+  },
+  build: {
+    minify: false, // Disable minification
+    sourcemap: true,
+
+  },
 });
