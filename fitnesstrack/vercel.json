@@ -1,34 +1,7 @@
-
-  
- 
  {
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "env": {
-            "NODE_ENV": "development"
-          },
-          "commands": {
-            "install": "npm install --only=dev && npm install"
-          },
-        "config": {
-          "distDir": "dist"
-        }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ],
-    
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/" }
-        ]
-
-
-  }
-
+    "rewrites":[
+             { "source":"/(.*)" , "destination":"/" }
+            ]
+ }
+  
 
