@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL: "https://fitness-track-backend-using-mern.vercel.app/api",
+  baseURL: "https://fitness-track-backend-using-mern.vercel.app/api/",
 });
 
 
