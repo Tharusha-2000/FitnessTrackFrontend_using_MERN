@@ -81,6 +81,7 @@ const TextButton = styled.span`
 
 const Authentication = () => {
   const [login, setLogin] = useState(false);
+   axios.defaults.withCredentials = true;
   return (
     <Container>
       <Left>
