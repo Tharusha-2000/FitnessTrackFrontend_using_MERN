@@ -1,6 +1,6 @@
 import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from "./utils/Themes";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Authentication from "./pages/Authentication";
 import { useState } from "react";
 import { useSelector } from "react-redux";
