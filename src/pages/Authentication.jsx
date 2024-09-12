@@ -4,6 +4,8 @@ import LogoImage from "../utils/Images/Logo.png";
 import AuthImage from "../utils/Images/RR.png";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
+import axios from 'axios';
+
 
 const Container = styled.div`
   flex: 1;
@@ -81,6 +83,7 @@ const TextButton = styled.span`
 
 const Authentication = () => {
   const [login, setLogin] = useState(false);
+   axios.defaults.withCredentials = true;
   return (
     <Container>
       <Left>
