@@ -6,12 +6,12 @@ const API = axios.create({
 });
 
 
-export const UserSignUp = async (data) => API.post("/user/signup", data);
-export const UserSignIn = async (data) => API.post("/user/signin", data);
+export const UserSignUp = async (data) => API.post(`/user/signup`, data);
+export const UserSignIn = async (data) => API.post(`/user/signin`, data);
 
 
 export const getDashboardDetails = async (token) =>
-  API.get("/user/dashboard", {
+  API.get(`/user/dashboard`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
