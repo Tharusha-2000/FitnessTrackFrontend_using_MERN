@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/src',
+      dayjs: 'dayjs',
     },
   },
   build: {
