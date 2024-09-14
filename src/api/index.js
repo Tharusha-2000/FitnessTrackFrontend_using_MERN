@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://fitness-track-backend-using-mern.vercel.app/api/",
+  baseURL: "http://localhost:8005/api/",
 });
 
 export const UserSignUp = async (data) => API.post(`/user/signup`, data);
