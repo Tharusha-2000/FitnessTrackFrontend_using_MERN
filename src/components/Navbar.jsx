@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import LogoImg from "../utils/Images/Logo.png";
 import { Link as LinkR, NavLink } from "react-router-dom";
@@ -130,6 +131,13 @@ const MobileMenu = styled.ul`
 const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
   const [isOpen, setisOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
   return (
     <Nav>
       <NavContainer>
@@ -158,8 +166,8 @@ const Navbar = ({ currentUser }) => {
         </NavItems>
 
         <UserContainer>
-          <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
-          <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
+          <Avatar src={currentUser?.img}>{currentUser?.name && currentUser.name[0]}</Avatar>
+          <TextButton onClick={handleLogout}>Logout</TextButton>
         </UserContainer>
       </NavContainer>
     </Nav>
