@@ -158,7 +158,7 @@ const Navbar = ({ currentUser }) => {
         </NavItems>
 
         <UserContainer>
-          <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
+          <Avatar src={currentUser?.img}>{currentUser?.name && currentUser.name[0]}</Avatar>
           <TextButton onClick={() => dispatch(logout())}>Logout</TextButton>
         </UserContainer>
       </NavContainer>
