@@ -168,6 +168,7 @@ const Navbar = ({ currentUser }) => {
         <UserContainer>
           <Avatar src={currentUser?.img}>{currentUser?.name && currentUser.name[0]}</Avatar>
           <TextButton onClick={handleLogout}>Logout</TextButton>
+
         </UserContainer>
       </NavContainer>
     </Nav>
