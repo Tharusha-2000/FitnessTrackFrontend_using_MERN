@@ -18,8 +18,8 @@ const Label = styled.label`
     `
     color: ${theme.red};
   `}
-  ${({ small }) =>
-    small &&
+  ${({ issmall }) =>
+    issmall &&
     `
     font-size: 8px;
   `}
@@ -59,8 +59,8 @@ const OutlinedInput = styled.div`
     min-height: ${height}
   `}
 
-  ${({ small }) =>
-    small &&
+  ${({ issmall }) =>
+    issmall &&
     `
     border-radius: 6px;
     padding: 8px 10px;
@@ -84,8 +84,8 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
-  ${({ small }) =>
-    small &&
+  ${({ issmall }) =>
+    issmall &&
     `
     font-size: 12px;
   `}
@@ -101,8 +101,8 @@ const Error = styled.p`
   font-size: 12px;
   margin: 0px 4px;
   color: ${({ theme }) => theme.red};
-  ${({ small }) =>
-    small &&
+  ${({ issmall }) =>
+    issmall &&
     `
     font-size: 8px;
   `}
@@ -141,18 +141,18 @@ const TextInput = ({
   chipableArray,
   removeChip,
   height,
-  small,
+  issmall,
   popup,
   password,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <Container small={small}>
-      <Label small={small} popup={popup} error={error}>
+    <Container issmall={issmall}>
+      <Label issmall={issmall} popup={popup} error={error}>
         {label}
       </Label>
       <OutlinedInput
-        small={small}
+        issmall={issmall}
         popup={popup}
         error={error}
         chipableInput={chipableInput}
@@ -180,7 +180,7 @@ const TextInput = ({
           <>
             <Input
               popup={popup}
-              small={small}
+              issmall={issmall}
               as={textArea ? "textarea" : "input"}
               name={name}
               rows={rows}
@@ -207,7 +207,7 @@ const TextInput = ({
         )}
       </OutlinedInput>
       {error && (
-        <Error small={small} popup={popup}>
+        <Error issmall={issmall} popup={popup}>
           {error}
         </Error>
       )}

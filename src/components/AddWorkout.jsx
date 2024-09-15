@@ -47,7 +47,7 @@ const AddWorkout = ({ workout, setWorkout, addNewWorkout, buttonLoading }) => {
       />
       <Button
         text="Add Workout"
-        small
+        issmall
         onClick={() => addNewWorkout()}
         isLoading={buttonLoading}
         isDisabled={buttonLoading}

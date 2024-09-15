@@ -49,8 +49,8 @@ ${({ flex }) =>
     flex: 1;
 `}
 
-${({ small }) =>
-    small &&
+${({ issmall }) =>
+    issmall &&
     `
 padding: 10px 28px;
 `}
@@ -76,7 +76,7 @@ const button = ({
   type,
   onClick,
   flex,
-  small,
+  issmall,
   outlined,
   full,
 }) => {
@@ -87,7 +87,7 @@ const button = ({
       type={type}
       isLoading={isLoading}
       flex={flex}
-      small={small}
+      issmall={issmall}
       outlined={outlined}
       full={full}
     >
